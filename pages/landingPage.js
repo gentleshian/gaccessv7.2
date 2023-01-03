@@ -66,7 +66,7 @@ const provider = new GoogleAuthProvider(app);
       // const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     })
-  },[]);
+  },[setSSOuser]);
   
   if(!SSOuser) {
     return <Backdrop

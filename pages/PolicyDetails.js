@@ -236,7 +236,7 @@ export default function PolicyDetails() {
   const files = acceptedFiles.map(file => (
 
     <li key={file.path} style={{ borderStyle: 'solid', borderRadius: 7, borderColor: '#C8D7E2', backgroundColor: '#EFF9FF', color: 'black', fontSize: 18, padding: 12, display: 'block', maxWidth: '45%' }}>
-      <Image src={copy_logo} alt="copy_logo" width={'15%'} height={'15%'} /> {file.path} <span class="close" style={{ marginLeft: '30%', cursor: 'pointer' }}>&times;</span>
+      <Image src={copy_logo} alt="copy_logo" width={'15%'} height={'15%'} /> {file.path} <span className="close" style={{ marginLeft: '30%', cursor: 'pointer' }}>&times;</span>
     </li>
 
   ));
