@@ -8,9 +8,11 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: .next
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
+        baseDirectory: .next
+        files:
+          - '**/*'
+      cache:
+        paths: 
+          - '/web/node_modules/**/*'
+          - '/web/.next/cache/**/*'
+    appRoot: web
