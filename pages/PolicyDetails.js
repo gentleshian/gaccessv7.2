@@ -223,32 +223,32 @@ export default function PolicyDetails() {
   // FOR DUPLICATES
 
   // FOR BULK
-  const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
-    // Disable click and keydown behavior
-    noClick: true,
-    noKeyboard: true,
-    accept: {
-      'excel': ['.xlsx', '.xls'],
-      'csv': ['.csv'],
-    }
-  });
+  // const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
+  //   // Disable click and keydown behavior
+  //   noClick: true,
+  //   noKeyboard: true,
+  //   accept: {
+  //     'excel': ['.xlsx', '.xls'],
+  //     'csv': ['.csv'],
+  //   }
+  // });
 
-  const files = acceptedFiles.map(file => (
+  // const files = acceptedFiles.map(file => (
 
-    <li key={file.path} style={{ borderStyle: 'solid', borderRadius: 7, borderColor: '#C8D7E2', backgroundColor: '#EFF9FF', color: 'black', fontSize: 18, padding: 12, display: 'block', maxWidth: '45%' }}>
-      <Image src={copy_logo} alt="copy_logo" width={'15%'} height={'15%'} /> {file.path} <span className="close" style={{ marginLeft: '30%', cursor: 'pointer' }}>&times;</span>
-    </li>
+  //   <li key={file.path} style={{ borderStyle: 'solid', borderRadius: 7, borderColor: '#C8D7E2', backgroundColor: '#EFF9FF', color: 'black', fontSize: 18, padding: 12, display: 'block', maxWidth: '45%' }}>
+  //     <Image src={copy_logo} alt="copy_logo" width={'15%'} height={'15%'} /> {file.path} <span className="close" style={{ marginLeft: '30%', cursor: 'pointer' }}>&times;</span>
+  //   </li>
 
-  ));
+  // ));
 
-  var closebtns = document.getElementsByClassName("close");
-  var i;
+  // var closebtns = document.getElementsByClassName("close");
+  // var i;
 
-  for (i = 0; i < closebtns.length; i++) {
-    closebtns[i].addEventListener("click", function () {
-      this.parentElement.style.display = 'none';
-    });
-  }
+  // for (i = 0; i < closebtns.length; i++) {
+  //   closebtns[i].addEventListener("click", function () {
+  //     this.parentElement.style.display = 'none';
+  //   });
+  // }
   //FOR BULK
 
 
