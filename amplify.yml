@@ -15,4 +15,5 @@ frontend:
     paths:
       - node_modules/**/*
       - web/.next/cache/**/*
+      - .next/cache/**/*
     appRoot: web
