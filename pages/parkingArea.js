@@ -40,10 +40,6 @@ import TextField from "@mui/material/TextField";
 import SyncIcon from '@mui/icons-material/Sync';
 
 
-
-
-
-
 function handleClick(event) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
@@ -58,16 +54,7 @@ export default function ParkingArea() {
   const [error, setError] = React.useState("");
   const [valueCalendar, setValueCalendar] = React.useState(new Date());
   
-  // console.log(valueCalendar)
-  // const week = getWeek(valueCalendar.$d);
-  // // console.log(week)
-
- 
-  // const month = valueCalendar.$M + 1;
-  // console.log(month)
-// const [weekOnCalendar, setWeekOnCalendar] = React.useState(1)
   
-  // const weekOnCalendar = week % month
   const weekOnCalendar = Math.ceil((valueCalendar.$D - valueCalendar.$W - 1) / 7) + 1
   
 
@@ -85,8 +72,15 @@ export default function ParkingArea() {
     index
   }
 
-  const indexOfParking = parkingAreaName.indexOf(props.index)
+  // const indexOfParking = parkingAreaName.indexOf(props.index)
 
+  const [indexOfParking,setIndexOfparking] = React.useState(0)
+  useEffect(() => {
+    const getData = () => {
+      props.index ? setIndexOfparking(parkingAreaName.indexOf(props.index)) : setIndexOfparking(0)
+    };
+    getData();
+  },[]);
 
   const handleChangeFilterActive = (event) => {
     setFilterActive(event.target.value);
@@ -122,27 +116,21 @@ export default function ParkingArea() {
   }
 
 
-  // for (let i = (parkingAreaSlots - slotApi); i <= parkingAreaSlots; i++) {
-  //   // Add each number to the array
-  //   rows.push(createData('MCHD00' + i, parkingSlotNames[i - 1], 'Available', 'pj'));
-  // }
+
   const [lastRefreshed, setLastRefreshed] = useLocalStorage("lastRefreshed", '');
 
   // When the button is clicked, update the time
   function refresh() {
     const currentDate = new Date();
     setLastRefreshed(currentDate.toLocaleString());
-    // if (week===1){
-    //   setWeekOnCalendar(1)
-    // }
-    // else{
-    //   setWeekOnCalendar(week % month)
-    // }
+    
   }
 
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const today = new Date();
   const presentDay = days[today.getDay()];
+  const presentWeek =  Math.ceil((today.getDate()- today.getDay() - 1) / 7) + 1
+ 
 
   const [slotApi, setSlotApi] = React.useState()
   // const [filterSlots,setFilterSlots]= React.useState('')
@@ -155,18 +143,13 @@ export default function ParkingArea() {
         // 'Access-Control-Allow-Origin':"*",
       }
     };
-    // setIsLoading(true);
-    // const gender = "male"
-    // const height = "165"
+  
     fetch('https://zh66xn42vk.execute-api.ap-southeast-1.amazonaws.com/stage/parkingareas', options)
       .then((response) => response.json())
       .then((response) => {
-       {day ? setSlotApi(response.ParkingAreas.filter(area => area.calendarRestriction === day+weekOnCalendar)[indexOfParking].slots) : setSlotApi(response.ParkingAreas.filter(area => area.calendarRestriction === presentDay+"1")[indexOfParking].slots)}
+       {weekOnCalendar ? setSlotApi(response.ParkingAreas.filter(area => area.calendarRestriction === day+weekOnCalendar)[indexOfParking].slots) : setSlotApi(response.ParkingAreas.filter(area => area.calendarRestriction === presentDay+presentWeek)[indexOfParking].slots)}
         // setSlotApi(response.ParkingAreas.filter(area => area.calendarRestriction === day+weekOnCalendar)[indexOfParking].slots)
-        // console.log(response.ParkingAreas.filter(area => area.calendarRestriction === day+weekOnCalendar))
-      // console.log(response)
-      // console.log(response)
-      // console.log(response.ParkingAreas)
+       
       })
       .catch(() => {
         setError("Failed to retrieve from api");
@@ -185,13 +168,21 @@ export default function ParkingArea() {
   function routetoEditParking() {
     router.push("/EditParkingDetail")
   }
+
   
 
 
   const parkingSlot = parkingAreaSlots[indexOfParking]
 
-  const totalSlots = parkingSlot.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue, 10), 0)
+  
 
+  // const [totalSlots, setTotalSlots] = React.useState(0)
+  // {(typeof (parkingSlot.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue, 10), 0)) !== 'undefined')? setTotalSlots(parkingSlot.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue, 10), 0)) : setTotalSlots(0)}
+  // if(parkingSlot.length >0){
+    const totalSlots = parkingSlot.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue, 10), 0) 
+  // }
+
+  
   const slotStatus = []
   for (let i = 0; i < ((totalSlots) - (slotApi)); i++) {
     // Add each number to the array

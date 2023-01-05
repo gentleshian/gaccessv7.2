@@ -24,12 +24,15 @@ import { useGlobalContext } from '../context/global';
 
 
 
+
 export default function PolicyDetails() {
   const { setParkingAreaName, setParkingAreaAddress, setParkingAreaFloor, setParkingAreaSlots, setParkingSlotNames } = useGlobalContext();
   const [addParking, setAddParking] = React.useState('');
 
   const handleChangeAddParking = (event) => {
     setAddParking(event.target.value);
+    addParkingArea(),
+      addParkingFloor()
   };
 
   const [parkingArea, setParkingArea] = React.useState([]);
@@ -236,7 +239,7 @@ export default function PolicyDetails() {
   // const files = acceptedFiles.map(file => (
 
   //   <li key={file.path} style={{ borderStyle: 'solid', borderRadius: 7, borderColor: '#C8D7E2', backgroundColor: '#EFF9FF', color: 'black', fontSize: 18, padding: 12, display: 'block', maxWidth: '45%' }}>
-  //     <Image src={copy_logo} alt="copy_logo" width={'15%'} height={'15%'} /> {file.path} <span className="close" style={{ marginLeft: '30%', cursor: 'pointer' }}>&times;</span>
+  //     <Image src={copy_logo} alt="copy_logo" width={'15%'} height={'15%'} /> {file.path} <span class="close" style={{ marginLeft: '30%', cursor: 'pointer' }}>&times;</span>
   //   </li>
 
   // ));
@@ -268,7 +271,7 @@ export default function PolicyDetails() {
   // }
 
   let createParkingAreas = newParkingArea.map((indexParkingArea) => (
-    <Box sx={{ mb: "4%" }} key={indexParkingArea-1} >
+    <Box sx={{ mb: "4%" }} key={indexParkingArea - 1} >
       <Paper variant="outlined" sx={{ my: { md: 0, lg: 0 }, p: { md: 2, lg: 3 } }}>
         <Box sx={{ ml: 3 }}>
           <Typography variant="subtitle1" sx={{ color: 'black' }} gutterBottom> Parking area name </Typography>
@@ -394,7 +397,7 @@ export default function PolicyDetails() {
         </Box>
 
         {/* </Box> */}
-        <Button variant='text' sx={{ textDecoration: 'underline', ml:'2%' }} onClick={addParkingFloor}>
+        <Button variant='text' sx={{ textDecoration: 'underline', ml: '2%' }} onClick={addParkingFloor}>
           + Add another area floor
         </Button>
       </Paper>
@@ -419,6 +422,13 @@ export default function PolicyDetails() {
   // console.log(indexParkingArea)
   console.log(parkingAreaFields)
   // console.log(newParkingArea)
+  // useEffect(() => {
+  //   addParkingArea(),
+  //   addParkingFloor()
+  // },[]);
+
+
+
 
 
   return (
@@ -437,7 +447,7 @@ export default function PolicyDetails() {
             onChange={handleChangeAddParking}
           >
             <FormControlLabel value="list" control={<Radio />} label="List manually" />
-            <FormControlLabel value="bulk" control={<Radio />} label="Upload bulk list" />
+            {/* <FormControlLabel value="bulk" control={<Radio />} label="Upload bulk list" /> */}
           </RadioGroup>
         </FormControl>
       </Paper>
@@ -454,7 +464,7 @@ export default function PolicyDetails() {
 
 
 
-      {addParking === 'bulk' ?
+      {/* {addParking === 'bulk' ?
         (
           <Paper variant="outlined" sx={{ my: { md: 3, lg: 5 }, p: { md: 2, lg: 3 } }}>
             <Typography component="b1" variant="b1" sx={{ color: 'black' }} gutterBottom>
@@ -485,7 +495,7 @@ export default function PolicyDetails() {
 
           </Paper>)
         : null
-      }
+      } */}
       {addParking === "list" ? (<Button variant='text' sx={{ textDecoration: 'underline' }} onClick={addParkingArea}>
         + Add another parking area
       </Button>) : null}

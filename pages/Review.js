@@ -1,19 +1,19 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
+// import InputLabel from '@mui/material/InputLabel';
 import Paper from '@mui/material/Paper';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
+// import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 //
-import Editor from "../components/Editor";
-import useLocalStorage from '../hooks/useLocalStorage';
+// import Editor from "../components/Editor";
+// import useLocalStorage from '../hooks/useLocalStorage';
 import { useGlobalContext } from '../context/global';
 // import RichTextEditor from "react-rte";
 import MUIRichTextEditor from "mui-rte";
@@ -55,8 +55,6 @@ export default function AddressForm() {
     }
   };
 
-
-
   const [costOfServiceBooking, setcostOfServiceBooking] = React.useState('');
 
   const handleChangeCostOfServiceBooking = (event) => {
@@ -91,122 +89,77 @@ export default function AddressForm() {
     else {
       setErrorEarliestDate('solid red 5px')
     }
-    // } else {
-    //   setErrorEarliestDate(false);
-    // }
   };
 
-  // const [rteValue, setRteValue] = React.useState();
-  // const [editorValue, setEditorValue] = React.useState(
-  //   RichTextEditor.createEmptyValue()
-  // );
-
-  // const onChange = (editorValue) => {
-  //   setEditorValue(editorValue);
-  //   setRteValue(editorValue.toString("markdown"));
-  // };
-  // console.log(rteValue);
-  // const toolbarConfig = {
-  //   // Optionally specify the groups to display (displayed in the order listed).
-  //   display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
-  //   INLINE_STYLE_BUTTONS: [
-  //     { label: 'Bold', style: 'BOLD', className: 'custom-css-class' },
-  //     { label: 'Italic', style: 'ITALIC' },
-  //     { label: 'Underline', style: 'UNDERLINE' }
-  //   ],
-  //   BLOCK_TYPE_DROPDOWN: [
-  //     { label: 'Normal', style: 'unstyled' },
-  //     { label: 'Heading Large', style: 'header-one' },
-  //     { label: 'Heading Medium', style: 'header-two' },
-  //     { label: 'Heading Small', style: 'header-three' }
-  //   ],
-  //   BLOCK_TYPE_BUTTONS: [
-  //     { label: 'UL', style: 'unordered-list-item' },
-  //     { label: 'OL', style: 'ordered-list-item' }
-  //   ]
-  // }
-
-
-  // const style = {
-  //   width: '600px',
-  //   height: '400px',
-  //   border: '1px solid #ccc'
-  // };
-  // const [style, setStyle] = React.useState({ width: '800px', height: '600px' });
-
-
-
-
-  // console.log(earliestBook)
   const save = (data) => {
     console.log(data);
   };
 
   const [valueRTE, setValueRTE] = React.useState("");
 
-const handleChangeRTE = (event) => {
-  const plainText = event.getCurrentContent().getPlainText() // for plain text
-  // const rteContent = convertToRaw(event.getCurrentContent()) // for rte content with text formating
-  // rteContent && setValueRTE(JSON.stringify(rteContent))
-  setValueRTE(plainText);
-  setRTE(plainText)
-};
-console.log(valueRTE);
+  const handleChangeRTE = (event) => {
+    const plainText = event.getCurrentContent().getPlainText() // for plain text
+    // const rteContent = convertToRaw(event.getCurrentContent()) // for rte content with text formating
+    // rteContent && setValueRTE(JSON.stringify(rteContent))
+    setValueRTE(plainText);
+    setRTE(plainText)
+  };
 
-const myTheme = createTheme({
-  palette: {
-    primary: {
-      main: "#000000"
-    }
-  }
-});
 
-Object.assign(myTheme, {
-  overrides: {
-    MUIRichTextEditor: {
-      root: {
-        backgroundColor: "white"
-      },
-      toolbar: {
-        border: "1px solid gray",
-        backgroundColor: "darkgray",
-        borderTopLeftRadius: "18px",
-        borderTopRightRadius: "18px",
-        borderBottomLeftRadius: "4px",
-        borderBottomRightRadius: "4px"
-      },
-      container: {
-        display: "flex",
-        flexDirection: "column"
-      },
-      editor: {
-        backgroundColor: "white",
-        padding: "20px",
-        height: "200px",
-        maxHeight: "200px",
-        overflow: "auto",
-        borderRight: "1px solid gray",
-        borderBottom: "1px solid gray",
-        borderLeft: "1px solid gray",
-        borderBottomLeftRadius: "18px",
-        borderBottomRightRadius: "18px"
-      },
-      placeHolder: {
-        backgroundColor: "white",
-        paddingLeft: 20,
-        width: "inherit",
-        borderRight: "1px solid gray",
-        borderTop: "1px solid gray",
-        borderLeft: "1px solid gray",
-        marginTop: -3
-      },
-      anchorLink: {
-        color: "#333333",
-        textDecoration: "underline"
+  const myTheme = createTheme({
+    palette: {
+      primary: {
+        main: "#000000"
       }
     }
-  }
-});
+  });
+
+  Object.assign(myTheme, {
+    overrides: {
+      MUIRichTextEditor: {
+        root: {
+          backgroundColor: "white"
+        },
+        toolbar: {
+          border: "1px solid gray",
+          backgroundColor: "darkgray",
+          borderTopLeftRadius: "18px",
+          borderTopRightRadius: "18px",
+          borderBottomLeftRadius: "4px",
+          borderBottomRightRadius: "4px"
+        },
+        container: {
+          display: "flex",
+          flexDirection: "column"
+        },
+        editor: {
+          backgroundColor: "white",
+          padding: "20px",
+          height: "200px",
+          maxHeight: "200px",
+          overflow: "auto",
+          borderRight: "1px solid gray",
+          borderBottom: "1px solid gray",
+          borderLeft: "1px solid gray",
+          borderBottomLeftRadius: "18px",
+          borderBottomRightRadius: "18px"
+        },
+        placeHolder: {
+          backgroundColor: "white",
+          paddingLeft: 20,
+          width: "inherit",
+          borderRight: "1px solid gray",
+          borderTop: "1px solid gray",
+          borderLeft: "1px solid gray",
+          marginTop: -3
+        },
+        anchorLink: {
+          color: "#333333",
+          textDecoration: "underline"
+        }
+      }
+    }
+  });
 
 
   return (
@@ -236,7 +189,7 @@ Object.assign(myTheme, {
               <Typography component="b1" variant="b1" sx={{ color: 'black' }} gutterBottom>
                 Booking Price
               </Typography>
-              <Typography component="b1" variant="b1" sx={{ color: 'black', ml: 21 }} gutterBottom>
+              <Typography component="b1" variant="b1" sx={{ color: 'black', ml: 26 }} gutterBottom>
                 Receiving GCash number wallet
               </Typography>
             </Box>
@@ -258,6 +211,7 @@ Object.assign(myTheme, {
               </FormControl>
               <FormControl sx={{ ml: 6, width: 400 }} >
                 <TextField
+                  required
                   value={phoneNumber}
                   variant="outlined"
                   onChange={handleChangeNumber}
@@ -331,21 +285,14 @@ Object.assign(myTheme, {
             Enter guidelines, rules, regulations, or directions for your service
           </Typography>
           <Box sx={{ width: '778px', height: '587px', mt: 2 }}>
-            {/* <Editor /> */}
-            {/* <RichTextEditor
-              value={editorValue}
-              onChange={onChange}
-              toolbarConfig={toolbarConfig}
-              className="editor"
-              placeholder="Enter your text here..." /> */}
-               <ThemeProvider theme={myTheme}>
+            <ThemeProvider theme={myTheme}>
               <MUIRichTextEditor
-      label="Type something here..."
-      onSave={save}
-      inlineToolbar={true}
-      onChange={handleChangeRTE}
-    />
-    </ThemeProvider>
+                label="Type something here..."
+                onSave={save}
+                inlineToolbar={true}
+                onChange={handleChangeRTE}
+              />
+            </ThemeProvider>
           </Box>
 
         </Box>

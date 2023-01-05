@@ -236,19 +236,19 @@ export default function ParkingDashboard() {
     return response.json(); // parses JSON response into native JavaScript objects
   }
   const week = [1, 2, 3, 4, 5]
-  function sendParkingStatus() {
-    week.map((week, weekIndex) => (calendarRestriction.map((day, dayIndex) => (parkingAreaName.map((parkingArea, index) => (
-      patchParkingStatus('https://zh66xn42vk.execute-api.ap-southeast-1.amazonaws.com/stage/parkingarea',
-        {
-          "parkingArea": parkingArea,
-          "calendarRestriction": day + week,
-          "updateKey": "parkingStatus",
-          "updateValue": parkingStatus
-        })
-        .then((data) => {
-          console.log(data); // JSON data parsed by `data.json()` call
-        })))))))
-  }
+  // function sendParkingStatus() {
+  //   week.map((week, weekIndex) => (calendarRestriction.map((day, dayIndex) => (parkingAreaName.map((parkingArea, index) => (
+  //     patchParkingStatus('https://zh66xn42vk.execute-api.ap-southeast-1.amazonaws.com/stage/parkingarea',
+  //       {
+  //         "parkingArea": parkingArea,
+  //         "calendarRestriction": day + week,
+  //         "updateKey": "parkingStatus",
+  //         "updateValue": parkingStatus
+  //       })
+  //       .then((data) => {
+  //         console.log(data); // JSON data parsed by `data.json()` call
+  //       })))))))
+  // }
 
   {!parkingStatus ? (week.map((week, weekIndex) => (calendarRestriction.map((day, dayIndex) => (parkingAreaName.map((parkingArea, index) => (
     patchParkingStatus('https://zh66xn42vk.execute-api.ap-southeast-1.amazonaws.com/stage/parkingarea',
@@ -480,12 +480,14 @@ export default function ParkingDashboard() {
       </TabPanel>
 
       <Image src={parkingdashboard_image_source} alt="success_logo" width={500} style={{ position: 'relative', marginLeft: "74%", paddingTop: '3%' }} />
-      <QuestionModal 
+      {parkingStatus ? ((<QuestionModal 
       title="Switch Parking service to inactive?" 
       body="Making this service inactive will automatically disable all parking areas" 
       status={parkingStatus} 
       successTitle='Service set up complete!' 
-      successBody='You may now start managing the service you just finished setting up'/>
+      successBody='You may now start managing the service you just finished setting up'
+      />)): null}
+      
       
 
 

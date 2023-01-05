@@ -18,15 +18,38 @@ import BookingAvailability from '../components/BookingAvailability';
 import useLocalStorage from '../hooks/useLocalStorage';
 import InputLabel from '@mui/material/InputLabel';
 import { useGlobalContext } from '../context/global';
+import { styled } from '@mui/material/styles';
+// import BookingAvailability from '../components/BookingAvailability';
 
+
+
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  '& .MuiToggleButtonGroup-grouped': {
+    margin: theme.spacing(1.3),
+    border: "1px solid lightgray",
+    width: "58px",
+    fontSize: "14px",
+    '&:not(:first-of-type)': {
+      borderRadius: 50,
+      borderLeft: "1px solid lightgray"
+    },
+    '&:first-of-type': {
+      borderRadius: 50,
+    },
+    "&.Mui-selected, &.Mui-selected:hover": {
+      color: "white",
+      backgroundColor: '#559FF5'
+    }
+  },
+}));
 
 
 
 export default function ServiceSetting() {
-  const {setCheckInOptions,setCheckInRestriction,setCheckInAndOutRestriction,setDailyCheckInRestriction,setDailyCheckInAndOutRestriction,setCalendarRestriction,bookingStart,bookingEnd} = useGlobalContext();
+  const { setCheckInOptions, setCheckInRestriction, setCheckInAndOutRestriction, setDailyCheckInRestriction, setDailyCheckInAndOutRestriction, setCalendarRestriction, bookingStart, bookingEnd } = useGlobalContext();
   const [weekday, setWeekday] = React.useState([]);
 
-  const handleWeekday = (event,newWeekday) => {
+  const handleWeekday = (event, newWeekday) => {
     setWeekday(newWeekday);
     setCalendarRestriction(newWeekday)
   };
@@ -66,118 +89,6 @@ export default function ServiceSetting() {
     setCheckInOptions(event.target.value)
   };
 
-
-  // const [bookingScheduleStart, setBookingScheduleStart] = React.useState([]);
-
-  // // Function to handle changes to the text field values
-  // const handleChangeBookingScheduleStart = (index, event) => {
-  //   // Create a copy of the field values array
-  //   const newBookingScheduleStart = [...bookingScheduleStart];
-
-  //   // Update the value at the specified index
-  //   newBookingScheduleStart[index] = event.target.value;
-
-  //   // Update the state variable with the new field values array
-  //   setBookingScheduleStart(newBookingScheduleStart);
-  // };
-
-  // const [bookingScheduleEnd, setBookingScheduleEnd] = React.useState([]);
-
-  // // Function to handle changes to the text field values
-  // const handleChangeBookingScheduleEnd = (index, event) => {
-  //   // Create a copy of the field values array
-  //   const newBookingScheduleEnd = [...bookingScheduleEnd];
-
-  //   // Update the value at the specified index
-  //   newBookingScheduleEnd[index] = event.target.value;
-
-  //   // Update the state variable with the new field values array
-  //   setBookingScheduleEnd(newBookingScheduleEnd);
-  // };
-
-
-
-  // const array = [];
-  // const timeArray = ['7:00AM',
-  //   '7:30 AM',
-  //   '8:00 AM',
-  //   '8:30 AM',
-  //   '9:00 AM',
-  //   '9:30 AM',
-  //   '10:00 AM',
-  //   '10:30 AM',
-  //   '11:00 AM',
-  //   '11:30 AM',
-  //   '12:00 NN',
-  //   '1:00 PM',
-  //   '1:30 PM',
-  //   '2:00 PM',
-  //   '2:30 PM',
-  //   '3:00 PM',
-  //   '3:30 PM',
-  //   '4:00 PM',
-  //   '4:30 PM',
-  //   '5:00 PM',
-  //   '5:30 PM',
-  //   '6:00 PM']
-  // for (let i = 1; i <= 22; i++) {
-  //   // Add each number to the array
-  //   array.push(i);
-  // }
-  // let MenuItemsStart = array.map((index) => (
-  //   <MenuItem key={index} value={index}>{timeArray[index]}</MenuItem>))
-
-  // const subArr = array.slice(bookingScheduleStart)
-
-  // let MenuItemsEnd = subArr.map((index) => (
-  //   <MenuItem key={index} value={index}>{timeArray[index]}</MenuItem>))
-
- 
-
-  // //  console.log(bookingScheduleStart)
-  // let bookingDay = weekday.map((index) => (
-  //   <Box key={index} sx={{ mb: 3, display: 'flex', flexDirection: "row", alignItems: 'center', alignContent: 'stretch' }}>
-  //     <Box sx={{ width: 100 }}>
-  //       <Typography sx={{ color: 'black', ml: 3 }}>{index}</Typography>
-  //     </Box>
-  //     <FormControl sx={{ my: 2, ml: 3.5, alignItems: 'center' }}>
-  //       <InputLabel id="demo-simple-select-label">Select time</InputLabel>
-  //       <Select
-  //         key={index}
-  //         labelId="demo-simple-select-autowidth-label"
-  //         id="demo-simple-select-autowidth-label"
-  //         // value={bookingScheduleStart[index]}
-  //         onChange={(event) => handleChangeBookingScheduleStart(index, event)}
-  //         label="Select time"
-  //         sx={{ width: 150 }}
-  //       // placeholder='Select time'
-  //       >
-  //         {MenuItemsStart}
-  //       </Select>
-  //     </FormControl>
-  //     <Typography sx={{ color: 'black', ml: 3 }}>-</Typography>
-  //     <FormControl sx={{ my: 2, ml: 3.5, alignItems: 'center' }}>
-  //       <InputLabel id="demo-simple-select-label">Select time</InputLabel>
-  //       <Select
-  //         key={index}
-  //         labelId="demo-simple-select-autowidth-label"
-  //         id="demo-simple-select-autowidth-label"
-  //         // value={bookingScheduleEnd[index]}
-  //         onChange={(event) => handleChangeBookingScheduleEnd(index, event)}
-  //         label="Select time"
-  //         sx={{ width: 150 }}
-  //       >
-  //         {MenuItemsEnd}
-  //       </Select>
-  //     </FormControl>
-  //   </Box>
-  // ));
-
-  // console.log(weekday)
-  // console.log(bookingScheduleStart)
-  // console.log(bookingScheduleEnd)
-  console.log(bookingStart)
-  console.log(bookingEnd)
   return (
 
     <React.Fragment>
@@ -187,7 +98,7 @@ export default function ServiceSetting() {
           <Typography component="b1" variant="b1" sx={{ color: 'black', ml: 3, mt: 2, fontWeight: 'bold' }} gutterBottom>Service schedule </Typography>
           <Typography component="subtitle1" variant="subtitle1" sx={{ color: '#6F8191', ml: 3, mt: -1 }} gutterBottom>Set days when the service will be able</Typography>
           <Box>
-            <ToggleButtonGroup
+            <StyledToggleButtonGroup
               value={weekday}
               onChange={handleWeekday}
               aria-label="text formatting"
@@ -215,7 +126,7 @@ export default function ServiceSetting() {
               <ToggleButton value="Sunday" aria-label="sunday">
                 Su
               </ToggleButton>
-            </ToggleButtonGroup>
+            </StyledToggleButtonGroup>
           </Box>
         </Box>
         <Box sx={{ ml: 3, mt: 2 }}>
@@ -271,10 +182,22 @@ export default function ServiceSetting() {
                     onChange={handleChangeLatestBookingScheduleCheckIn}
                     // label="Select time"
                     // placeholder="Select time"
-                    
+
                     sx={{ width: 150 }}
                   >
-
+                    <MenuItem value={'12:30 AM'}>12:30 AM</MenuItem>
+                    <MenuItem value={'1:00 AM'}>1:00 AM</MenuItem>
+                    <MenuItem value={'1:30 AM'}>1:30 AM</MenuItem>
+                    <MenuItem value={'2:00 AM'}>2:00 AM</MenuItem>
+                    <MenuItem value={'2:30 AM'}>2:30 AM</MenuItem>
+                    <MenuItem value={'3:00 AM'}>3:00 AM</MenuItem>
+                    <MenuItem value={'3:30 AM'}>3:30 AM</MenuItem>
+                    <MenuItem value={'4:00 AM'}>4:00 AM</MenuItem>
+                    <MenuItem value={'4:30 AM'}>4:30 AM</MenuItem>
+                    <MenuItem value={'5:00 AM'}>5:00 AM</MenuItem>
+                    <MenuItem value={'5:30 AM'}>5:30 AM</MenuItem>
+                    <MenuItem value={'6:00 AM'}>6:00 AM</MenuItem>
+                    <MenuItem value={'6:30 AM'}>6:30 AM</MenuItem>
                     <MenuItem value={'7:00 AM'}>7:00 AM</MenuItem>
                     <MenuItem value={'7:30 AM'}>7:30 AM</MenuItem>
                     <MenuItem value={'8:00 AM'}>8:00 AM</MenuItem>
@@ -285,7 +208,31 @@ export default function ServiceSetting() {
                     <MenuItem value={'10:30 AM'}>10:30 AM</MenuItem>
                     <MenuItem value={'11:00 AM'}>11:00 AM</MenuItem>
                     <MenuItem value={'11:30 AM'}>11:30 AM</MenuItem>
-                    <MenuItem value={'12:00 NN'}>12:00 NN</MenuItem>
+                    <MenuItem value={'12:00 NN'}>12:00 AM</MenuItem>
+                    <MenuItem value={'12:30 PM'}>12:30 PM</MenuItem>
+                    <MenuItem value={'1:00 PM'}>1:00 PM</MenuItem>
+                    <MenuItem value={'1:30 PM'}>1:30 PM</MenuItem>
+                    <MenuItem value={'2:00 PM'}>2:00 PM</MenuItem>
+                    <MenuItem value={'2:30 PM'}>2:30 PM</MenuItem>
+                    <MenuItem value={'3:00 PM'}>3:00 PM</MenuItem>
+                    <MenuItem value={'3:30 PM'}>3:30 PM</MenuItem>
+                    <MenuItem value={'4:00 PM'}>4:00 PM</MenuItem>
+                    <MenuItem value={'4:30 PM'}>4:30 PM</MenuItem>
+                    <MenuItem value={'5:00 PM'}>5:00 PM</MenuItem>
+                    <MenuItem value={'5:30 PM'}>5:30 PM</MenuItem>
+                    <MenuItem value={'6:00 PM'}>6:00 PM</MenuItem>
+                    <MenuItem value={'6:30 PM'}>6:30 PM</MenuItem>
+                    <MenuItem value={'7:00 PM'}>7:00 PM</MenuItem>
+                    <MenuItem value={'7:30 PM'}>7:30 PM</MenuItem>
+                    <MenuItem value={'8:00 PM'}>8:00 PM</MenuItem>
+                    <MenuItem value={'8:30 PM'}>8:30 PM</MenuItem>
+                    <MenuItem value={'9:00 PM'}>9:00 PM</MenuItem>
+                    <MenuItem value={'9:30 PM'}>9:30 PM</MenuItem>
+                    <MenuItem value={'10:00 PM'}>10:00 PM</MenuItem>
+                    <MenuItem value={'10:30 PM'}>10:30 PM</MenuItem>
+                    <MenuItem value={'11:00 PM'}>11:00 PM</MenuItem>
+                    <MenuItem value={'11:30 PM'}>11:30 PM</MenuItem>
+                    <MenuItem value={'12:00 PM'}>12:00 PM</MenuItem>
                   </Select>
                 </FormControl>
                 <Typography component="subtitle1" variant="subtitle1" sx={{ color: 'grey', display: 'block' }} gutterBottom>
@@ -321,6 +268,19 @@ export default function ServiceSetting() {
                   >
                     <InputLabel>Select time</InputLabel>
 
+                    <MenuItem value={'12:30 AM'}>12:30 AM</MenuItem>
+                    <MenuItem value={'1:00 AM'}>1:00 AM</MenuItem>
+                    <MenuItem value={'1:30 AM'}>1:30 AM</MenuItem>
+                    <MenuItem value={'2:00 AM'}>2:00 AM</MenuItem>
+                    <MenuItem value={'2:30 AM'}>2:30 AM</MenuItem>
+                    <MenuItem value={'3:00 AM'}>3:00 AM</MenuItem>
+                    <MenuItem value={'3:30 AM'}>3:30 AM</MenuItem>
+                    <MenuItem value={'4:00 AM'}>4:00 AM</MenuItem>
+                    <MenuItem value={'4:30 AM'}>4:30 AM</MenuItem>
+                    <MenuItem value={'5:00 AM'}>5:00 AM</MenuItem>
+                    <MenuItem value={'5:30 AM'}>5:30 AM</MenuItem>
+                    <MenuItem value={'6:00 AM'}>6:00 AM</MenuItem>
+                    <MenuItem value={'6:30 AM'}>6:30 AM</MenuItem>
                     <MenuItem value={'7:00 AM'}>7:00 AM</MenuItem>
                     <MenuItem value={'7:30 AM'}>7:30 AM</MenuItem>
                     <MenuItem value={'8:00 AM'}>8:00 AM</MenuItem>
@@ -331,15 +291,37 @@ export default function ServiceSetting() {
                     <MenuItem value={'10:30 AM'}>10:30 AM</MenuItem>
                     <MenuItem value={'11:00 AM'}>11:00 AM</MenuItem>
                     <MenuItem value={'11:30 AM'}>11:30 AM</MenuItem>
-                    <MenuItem value={'12:00 NN'}>12:00 NN</MenuItem>
+                    <MenuItem value={'12:00 NN'}>12:00 AM</MenuItem>
+                    <MenuItem value={'12:30 PM'}>12:30 PM</MenuItem>
+                    <MenuItem value={'1:00 PM'}>1:00 PM</MenuItem>
+                    <MenuItem value={'1:30 PM'}>1:30 PM</MenuItem>
+                    <MenuItem value={'2:00 PM'}>2:00 PM</MenuItem>
+                    <MenuItem value={'2:30 PM'}>2:30 PM</MenuItem>
+                    <MenuItem value={'3:00 PM'}>3:00 PM</MenuItem>
+                    <MenuItem value={'3:30 PM'}>3:30 PM</MenuItem>
+                    <MenuItem value={'4:00 PM'}>4:00 PM</MenuItem>
+                    <MenuItem value={'4:30 PM'}>4:30 PM</MenuItem>
+                    <MenuItem value={'5:00 PM'}>5:00 PM</MenuItem>
+                    <MenuItem value={'5:30 PM'}>5:30 PM</MenuItem>
+                    <MenuItem value={'6:00 PM'}>6:00 PM</MenuItem>
+                    <MenuItem value={'6:30 PM'}>6:30 PM</MenuItem>
+                    <MenuItem value={'7:00 PM'}>7:00 PM</MenuItem>
+                    <MenuItem value={'7:30 PM'}>7:30 PM</MenuItem>
+                    <MenuItem value={'8:00 PM'}>8:00 PM</MenuItem>
+                    <MenuItem value={'8:30 PM'}>8:30 PM</MenuItem>
+                    <MenuItem value={'9:00 PM'}>9:00 PM</MenuItem>
+                    <MenuItem value={'9:30 PM'}>9:30 PM</MenuItem>
+                    <MenuItem value={'10:00 PM'}>10:00 PM</MenuItem>
+                    <MenuItem value={'10:30 PM'}>10:30 PM</MenuItem>
+                    <MenuItem value={'11:00 PM'}>11:00 PM</MenuItem>
+                    <MenuItem value={'11:30 PM'}>11:30 PM</MenuItem>
+                    <MenuItem value={'12:00 PM'}>12:00 PM</MenuItem>
                   </Select>
                 </FormControl>
                 <Typography component="subtitle1" variant="subtitle1" sx={{ color: 'grey', display: 'block' }} gutterBottom>
                   {latestBookingScheduleCheckInAndOut ? `Employees must check in by ${latestBookingScheduleCheckInAndOut}. If not checked in before this time, booking will be forfeited. ` : null}
                 </Typography>
               </Paper>) : null}
-
-
           </RadioGroup>
         </FormControl>
 
